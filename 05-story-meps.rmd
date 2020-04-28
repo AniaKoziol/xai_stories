@@ -14,6 +14,25 @@ Each year, approximately 15,000 households are selected as a new panel of survey
 
 ## Model
 
+### Data
+Agency of Healthcare Research and Quality provides an extensive database of medical expenses. Consequently, dataset selection on which we will make further analysis was an important first step. We decided to choose the two latest panels. Expenditures for treatment that we will examine in the following chapter apply to the years 2015/2016 and 2016/2017. The selected dataset contains information on over 32,000 patients, and each of them is described by 3,700 variables. We attached great importance to choosing features that would be appropriate for the prediction. The most important criterion adopted is that the variable cannot relate to expenditure associated with any treatment. For this purpose, we looked through several hundred of them and selected *number of features* most suitable.
+
+
+### Gradient Boosting
+Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model.  The table below presents the values of the determination coefficient depending on (?):
+
+
+
+| without expenses | Model | $R^2$ | $R^2$ on a logarithmic scale | 
+|----------------|-----------------------------------------------------------------------|------------------------------------------|--------------------------------------------------------|
+| included | Gradient Boosting | 0.50 | - |
+| included | Tuned Gradient Boosting | A | - |
+|not included | Gradient Boosting | 0.48 | 0.59 |
+|not included| Tuned Gradient Boosting | B | C |
+
+
+
+
 We are testing models and trying to improve their quality.
 Right now, the best model we developed is Gradient Boosting Regressor.
 The figures below present the prediction values on training and test set.
