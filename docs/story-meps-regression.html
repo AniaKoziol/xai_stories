@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Story Meps: regression | XAI Stories</title>
+  <meta name="description" content="Case studies for eXplainable Artificial Intelligence" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Story Meps: regression | XAI Stories" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="images/cover.png" />
+  <meta property="og:description" content="Case studies for eXplainable Artificial Intelligence" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Story Meps: regression | XAI Stories" />
+  
+  <meta name="twitter:description" content="Case studies for eXplainable Artificial Intelligence" />
+  <meta name="twitter:image" content="images/cover.png" />
+
+<meta name="author" content="" />
+
+
+<meta name="date" content="2020-04-28" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="story-uplift-modelling.html"/>
+<link rel="next" href="story-meps-healthcare-expenditures-of-individuals.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./"><h3>XAI Stories</h3> Case studies</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a><ul>
+<li class="chapter" data-level="0.1" data-path="foreword.html"><a href="foreword.html#why"><i class="fa fa-check"></i><b>0.1</b> Why?</a></li>
+<li class="chapter" data-level="0.2" data-path="foreword.html"><a href="foreword.html#what"><i class="fa fa-check"></i><b>0.2</b> What?</a></li>
+<li class="chapter" data-level="0.3" data-path="foreword.html"><a href="foreword.html#how"><i class="fa fa-check"></i><b>0.3</b> How?</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="story-house-sale-prices.html"><a href="story-house-sale-prices.html"><i class="fa fa-check"></i><b>1</b> Story House Sale Prices: eXplainable predictions for house sale</a><ul>
+<li class="chapter" data-level="1.1" data-path="story-house-sale-prices.html"><a href="story-house-sale-prices.html#introduction"><i class="fa fa-check"></i><b>1.1</b> Introduction</a></li>
+<li class="chapter" data-level="1.2" data-path="story-house-sale-prices.html"><a href="story-house-sale-prices.html#model"><i class="fa fa-check"></i><b>1.2</b> Model</a></li>
+<li class="chapter" data-level="1.3" data-path="story-house-sale-prices.html"><a href="story-house-sale-prices.html#explanations"><i class="fa fa-check"></i><b>1.3</b> Explanations</a></li>
+<li class="chapter" data-level="1.4" data-path="story-house-sale-prices.html"><a href="story-house-sale-prices.html#summary-and-conclusions"><i class="fa fa-check"></i><b>1.4</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html"><i class="fa fa-check"></i><b>2</b> Story hotel booking: eXplainable predictions of booking cancelation and guests coming back</a><ul>
+<li class="chapter" data-level="2.1" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#introduction-1"><i class="fa fa-check"></i><b>2.1</b> Introduction</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#hyperparameter-optimization"><i class="fa fa-check"></i><b>2.1.1</b> Hyperparameter optimization</a></li>
+<li class="chapter" data-level="2.1.2" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#imbalanced-dataset"><i class="fa fa-check"></i><b>2.1.2</b> Imbalanced dataset</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#model-1"><i class="fa fa-check"></i><b>2.2</b> Model</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#model-1.-booking-cancelation"><i class="fa fa-check"></i><b>2.2.1</b> Model 1. Booking cancelation</a></li>
+<li class="chapter" data-level="2.2.2" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#model-2.-repeated-guests"><i class="fa fa-check"></i><b>2.2.2</b> Model 2. Repeated guests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#explanations-1"><i class="fa fa-check"></i><b>2.3</b> Explanations</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#model-1.-booking-cancelation-1"><i class="fa fa-check"></i><b>2.3.1</b> Model 1. Booking cancelation</a></li>
+<li class="chapter" data-level="2.3.2" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#model-2.-repeated-guests-1"><i class="fa fa-check"></i><b>2.3.2</b> Model 2. Repeated guests</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="story-hotel-booking.html"><a href="story-hotel-booking.html#summary-and-conclusions-1"><i class="fa fa-check"></i><b>2.4</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html"><i class="fa fa-check"></i><b>3</b> Story Uplift Modelling: eXplaining colon cancer survival rate after treatment</a><ul>
+<li class="chapter" data-level="3.1" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#introduction-2"><i class="fa fa-check"></i><b>3.1</b> Introduction</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#what-is-uplift-modelling"><i class="fa fa-check"></i><b>3.1.1</b> What is Uplift Modelling?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#dataset-description"><i class="fa fa-check"></i><b>3.1.2</b> Dataset Description</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#model-2"><i class="fa fa-check"></i><b>3.2</b> Model</a></li>
+<li class="chapter" data-level="3.3" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#explanations-2"><i class="fa fa-check"></i><b>3.3</b> Explanations</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#dataset-level-explainations"><i class="fa fa-check"></i><b>3.3.1</b> Dataset Level Explainations</a></li>
+<li class="chapter" data-level="3.3.2" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#instance-level-explainations"><i class="fa fa-check"></i><b>3.3.2</b> Instance Level Explainations</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="story-uplift-modelling.html"><a href="story-uplift-modelling.html#summary-and-conclusions-2"><i class="fa fa-check"></i><b>3.4</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="story-meps-regression.html"><a href="story-meps-regression.html"><i class="fa fa-check"></i><b>4</b> Story Meps: regression</a><ul>
+<li class="chapter" data-level="4.1" data-path="story-meps-regression.html"><a href="story-meps-regression.html#introduction-3"><i class="fa fa-check"></i><b>4.1</b> Introduction</a></li>
+<li class="chapter" data-level="4.2" data-path="story-meps-regression.html"><a href="story-meps-regression.html#model-3"><i class="fa fa-check"></i><b>4.2</b> Model</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="story-meps-regression.html"><a href="story-meps-regression.html#data"><i class="fa fa-check"></i><b>4.2.1</b> Data</a></li>
+<li class="chapter" data-level="4.2.2" data-path="story-meps-regression.html"><a href="story-meps-regression.html#model-4"><i class="fa fa-check"></i><b>4.2.2</b> Model</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="story-meps-regression.html"><a href="story-meps-regression.html#explanations-3"><i class="fa fa-check"></i><b>4.3</b> Explanations</a></li>
+<li class="chapter" data-level="4.4" data-path="story-meps-regression.html"><a href="story-meps-regression.html#summary-and-conclusions-3"><i class="fa fa-check"></i><b>4.4</b> Summary and conclusions</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="story-meps-regression.html"><a href="story-meps-regression.html#gradient-boosting"><i class="fa fa-check"></i><b>4.4.1</b> Gradient Boosting</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="story-meps-regression.html"><a href="story-meps-regression.html#explanations-4"><i class="fa fa-check"></i><b>4.5</b> Explanations</a></li>
+<li class="chapter" data-level="4.6" data-path="story-meps-regression.html"><a href="story-meps-regression.html#summary-and-conclusions-4"><i class="fa fa-check"></i><b>4.6</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html"><i class="fa fa-check"></i><b>5</b> Story MEPS: Healthcare expenditures of individuals</a><ul>
+<li class="chapter" data-level="5.1" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#introduction-4"><i class="fa fa-check"></i><b>5.1</b> Introduction</a></li>
+<li class="chapter" data-level="5.2" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#models"><i class="fa fa-check"></i><b>5.2</b> Models</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#model-1-linear"><i class="fa fa-check"></i><b>5.2.1</b> Model 1: Linear</a></li>
+<li class="chapter" data-level="5.2.2" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#model-2-ann"><i class="fa fa-check"></i><b>5.2.2</b> Model 2: ANN</a></li>
+<li class="chapter" data-level="5.2.3" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#model-3-xgb"><i class="fa fa-check"></i><b>5.2.3</b> Model 3: XGB</a></li>
+<li class="chapter" data-level="5.2.4" data-path="story-meps-healthcare-expenditures-of-individuals.html"><a href="story-meps-healthcare-expenditures-of-individuals.html#working-refs"><i class="fa fa-check"></i><b>5.2.4</b> Working refs</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html"><i class="fa fa-check"></i><b>6</b> Story Uplift modeling on marketing dataset: eXplainable predictions for optimized marketing campaigns</a><ul>
+<li class="chapter" data-level="6.1" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#introduction-5"><i class="fa fa-check"></i><b>6.1</b> Introduction</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#approaches-towards-uplift-modelling"><i class="fa fa-check"></i><b>6.1.1</b> Approaches towards uplift modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#dataset-1"><i class="fa fa-check"></i><b>6.2</b> Dataset</a></li>
+<li class="chapter" data-level="6.3" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#model-5"><i class="fa fa-check"></i><b>6.3</b> Model</a></li>
+<li class="chapter" data-level="6.4" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#explanations-5"><i class="fa fa-check"></i><b>6.4</b> Explanations</a></li>
+<li class="chapter" data-level="6.5" data-path="story-uplift-marketing.html"><a href="story-uplift-marketing.html#summary-and-conclusions-5"><i class="fa fa-check"></i><b>6.5</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="examples.html"><a href="examples.html"><i class="fa fa-check"></i>Examples</a><ul>
+<li class="chapter" data-level="6.6" data-path="examples.html"><a href="examples.html#figures-and-citations"><i class="fa fa-check"></i><b>6.6</b> Figures and citations</a></li>
+<li class="chapter" data-level="6.7" data-path="examples.html"><a href="examples.html#introduction-6"><i class="fa fa-check"></i><b>6.7</b> Introduction</a></li>
+<li class="chapter" data-level="6.8" data-path="examples.html"><a href="examples.html#model-6"><i class="fa fa-check"></i><b>6.8</b> Model</a></li>
+<li class="chapter" data-level="6.9" data-path="examples.html"><a href="examples.html#explanations-6"><i class="fa fa-check"></i><b>6.9</b> Explanations</a></li>
+<li class="chapter" data-level="6.10" data-path="examples.html"><a href="examples.html#summary-and-conclusions-6"><i class="fa fa-check"></i><b>6.10</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="story-lungs.html"><a href="story-lungs.html"><i class="fa fa-check"></i><b>7</b> Story lungs: eXplainable predictions for post operational risks</a><ul>
+<li class="chapter" data-level="7.1" data-path="story-lungs.html"><a href="story-lungs.html#introduction-7"><i class="fa fa-check"></i><b>7.1</b> Introduction</a></li>
+<li class="chapter" data-level="7.2" data-path="story-lungs.html"><a href="story-lungs.html#model-7"><i class="fa fa-check"></i><b>7.2</b> Model</a></li>
+<li class="chapter" data-level="7.3" data-path="story-lungs.html"><a href="story-lungs.html#explanations-7"><i class="fa fa-check"></i><b>7.3</b> Explanations</a></li>
+<li class="chapter" data-level="7.4" data-path="story-lungs.html"><a href="story-lungs.html#summary-and-conclusions-7"><i class="fa fa-check"></i><b>7.4</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="story-compas.html"><a href="story-compas.html"><i class="fa fa-check"></i><b>8</b> Story COMPAS: recidivism reloaded</a><ul>
+<li class="chapter" data-level="8.1" data-path="story-compas.html"><a href="story-compas.html#introduction-8"><i class="fa fa-check"></i><b>8.1</b> Introduction</a></li>
+<li class="chapter" data-level="8.2" data-path="story-compas.html"><a href="story-compas.html#model-8"><i class="fa fa-check"></i><b>8.2</b> Model</a></li>
+<li class="chapter" data-level="8.3" data-path="story-compas.html"><a href="story-compas.html#explanations-8"><i class="fa fa-check"></i><b>8.3</b> Explanations</a></li>
+<li class="chapter" data-level="8.4" data-path="story-compas.html"><a href="story-compas.html#summary-and-conclusions-8"><i class="fa fa-check"></i><b>8.4</b> Summary and conclusions</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="acknowledgements.html"><a href="acknowledgements.html"><i class="fa fa-check"></i><b>9</b> Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="_blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">XAI Stories</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="story-meps-regression" class="section level1">
+<h1><span class="header-section-number">Chapter 4</span> Story Meps: regression</h1>
+<p><em>Authors: Anna Kozioł (Warsaw University of Technology), Katarzyna Lorenc (Warsaw University of Technology), Piotr Podolski (University of Warsaw)</em></p>
+<p><em>Mentors: Maciej Andrzejak (Affiliation 2), Alicja Jośko (Affiliation 1)</em></p>
+<div id="introduction-3" class="section level2">
+<h2><span class="header-section-number">4.1</span> Introduction</h2>
+<p>As many opinions as people about healthcare financing.</p>
+<p>The aim of the project is to predict medical expenses based on demographic and socio-economic variables.</p>
+<p>The Medical Expenditure Panel Survey provides data on health care as well as related costs. Data for the MEPS project has been collected regularly since 1996.
+Each year, approximately 15,000 households are selected as a new panel of surveyed units.</p>
+</div>
+<div id="model-3" class="section level2">
+<h2><span class="header-section-number">4.2</span> Model</h2>
+<div id="data" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Data</h3>
+<p>Agency of Healthcare Research and Quality provides an extensive database of medical expenses. Consequently, dataset selection on which we will make further analysis was an important first step. We decided to choose the two latest panels. Expenditures for treatment that we will examine in the following chapter apply to the years 2015/2016 and 2016/2017. The selected dataset contains information on over 32,000 patients, and each of them is described by 3,700 variables. We attached great importance to choosing features that would be appropriate for the prediction. The most important criterion adopted is that the variable cannot relate to expenditure associated with any treatment. For this purpose, we looked through several hundred of them and selected <em>number of features</em> most suitable.</p>
+<p><strong>Some stats on health expenditure</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>Expenses</th>
+<th>Counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Inapplicable</td>
+<td>407</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>5504</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/05-expenses.png" width="500" style="display: block; margin: auto;" /></p>
+</div>
+<div id="model-4" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Model</h3>
+<p>Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model. The table below presents the values of the determination coefficient depending on (?):</p>
+<table>
+<thead>
+<tr class="header">
+<th>without expenses</th>
+<th>Model</th>
+<th><span class="math inline">\(R^2\)</span></th>
+<th><span class="math inline">\(R^2\)</span> on a logarithmic scale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>included</td>
+<td>Gradient Boosting</td>
+<td>0.50</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>included</td>
+<td>Tuned Gradient Boosting</td>
+<td>A</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>not included</td>
+<td>Gradient Boosting</td>
+<td>0.48</td>
+<td>0.59</td>
+</tr>
+<tr class="even">
+<td>not included</td>
+<td>Tuned Gradient Boosting</td>
+<td>B</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p>We are testing models and trying to improve their quality.
+Right now, the best model we developed is Gradient Boosting Regressor.
+The figures below present the prediction values on training and test set.</p>
+<p><img src="images/05-bg_test.png" width="1000" style="display: block; margin: auto;" /></p>
+<p>All key information about the final model we will put in this section.</p>
+</div>
+</div>
+<div id="explanations-3" class="section level2">
+<h2><span class="header-section-number">4.3</span> Explanations</h2>
+</div>
+<div id="summary-and-conclusions-3" class="section level2">
+<h2><span class="header-section-number">4.4</span> Summary and conclusions</h2>
+<div id="gradient-boosting" class="section level3">
+<h3><span class="header-section-number">4.4.1</span> Gradient Boosting</h3>
+<p>Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model. The table below presents the values of the determination coefficient depending on (?):</p>
+<table>
+<thead>
+<tr class="header">
+<th>without expenses</th>
+<th>Model</th>
+<th><span class="math inline">\(R^2\)</span></th>
+<th><span class="math inline">\(R^2\)</span> on a logarithmic scale</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>included</td>
+<td>Gradient Boosting</td>
+<td>0.50</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>included</td>
+<td>Tuned Gradient Boosting</td>
+<td>A</td>
+<td>-</td>
+</tr>
+<tr class="odd">
+<td>not included</td>
+<td>Gradient Boosting</td>
+<td>0.48</td>
+<td>0.59</td>
+</tr>
+<tr class="even">
+<td>not included</td>
+<td>Tuned Gradient Boosting</td>
+<td>B</td>
+<td>C</td>
+</tr>
+</tbody>
+</table>
+<p>We are testing models and trying to improve their quality.
+Right now, the best model we developed is Gradient Boosting Regressor.
+The figures below present the prediction values on training and test set.</p>
+<p><img src="images/05-bg_train.png" width="500" style="display: block; margin: auto;" /></p>
+<p><img src="images/05-bg_test.png" width="500" style="display: block; margin: auto;" /></p>
+<p>All key information about the final model we will put in this section.</p>
+</div>
+</div>
+<div id="explanations-4" class="section level2">
+<h2><span class="header-section-number">4.5</span> Explanations</h2>
+</div>
+<div id="summary-and-conclusions-4" class="section level2">
+<h2><span class="header-section-number">4.6</span> Summary and conclusions</h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="story-uplift-modelling.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="story-meps-healthcare-expenditures-of-individuals.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/compstat-lmu/iml_methods_limitations/edit/master/05-story-meps.rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["book.pdf", "book.epub"],
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
