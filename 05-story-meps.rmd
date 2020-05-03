@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Story Meps: regression
 
 *Authors:  Anna Kozioł (Warsaw University of Technology), Katarzyna Lorenc (Warsaw University of Technology), Piotr Podolski (University of Warsaw)*
@@ -17,53 +22,39 @@ Each year, approximately 15,000 households are selected as a new panel of survey
 ## Model
 
 ### Data
-Agency of Healthcare Research and Quality provides an extensive database of medical expenses. Consequently, dataset selection on which we will make further analysis was an important first step. We decided to choose the two latest panels. Expenditures for treatment that we will examine in the following chapter apply to the years 2015/2016 and 2016/2017. The selected dataset contains information on over 32,000 patients, and each of them is described by 3,700 variables. We attached great importance to choosing features that would be appropriate for the prediction. The most important criterion adopted is that the variable cannot relate to expenditure associated with any treatment. For this purpose, we looked through several hundred of them and selected *number of features* most suitable.
+Agency of Healthcare Research and Quality provides an extensive database of medical expenses. Consequently, dataset selection on which we will make further analysis was an important first step. We decided to choose the two latest panels. Expenditures for treatment that we will examine in the following chapter apply to the years 2015/2016 and 2016/2017. The selected dataset contains information on over 32,000 patients, and each of them is described by 3,700 variables. We attached great importance to choosing features that would be appropriate for the prediction. The most important criterion adopted is that the variable cannot relate to expenditure associated with any treatment. For this purpose, we looked through several hundred of them and selected 387 most suitable.
 
-**Some stats on health expenditure**
+As a part of the preprocessing, we removed records that were marked as *Inapplicable* in the expenditure column.  The number of people who didn't incur expenses is 5504, while the number of patients with "inapplicable" is 407, the percentage respectively are 17% and 1%. The following figures show the distribution of the explained variable.
 
 
-
-| Expenses | Counts | 
-|-----|------|
-| Inapplicable | 407 | 
-| 0 | 5504 |
-
-```{r, cache=FALSE, out.width="500", fig.align="center",echo=FALSE}
-knitr::include_graphics('images/05-expenses.png')
-
+```{r, cache=FALSE, out.width = "1400",fig.cap = "Distribution of medical expenses ", fig.align="center",echo=FALSE}
+knitr::include_graphics('images/05-y_val.png')
 ```
-
+    
 
 
 
 ### Model
-Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model.  The table below presents the values of the determination coefficient depending on (?):
+Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model. To choose the best model, we compared the determination coefficient values. 
+
+The table below shows the results of the experiments. To calculate the determination coefficient in column  *$R^2$ (logarithmically transformed expenses)*, we transformed logarithmically the values of expenses, and after training the model we returned to the original scale.
 
 
 
-| without expenses | Model | $R^2$ | $R^2$ on a logarithmic scale | 
+| Patients without expenses | Model | $R^2$ | $R^2$ (logarithmically transformed expenses) | 
 |----------------|-----------------------------------------------------------------------|------------------------------------------|--------------------------------------------------------|
 | included | Gradient Boosting | 0.50 | - |
-| included | Tuned Gradient Boosting | A | - |
-|not included | Gradient Boosting | 0.48 | 0.59 |
-|not included| Tuned Gradient Boosting | B | C |
+| included | Tuned Gradient Boosting | 0.55 | - |
+|not included | Gradient Boosting | 0.42 | 0.40 |
+|not included| Tuned Gradient Boosting | 0.49 | 0.49 |
+Table: Values of the determination coefficient.
 
 
 
 
-We are testing models and trying to improve their quality.
-Right now, the best model we developed is Gradient Boosting Regressor.
-The figures below present the prediction values on training and test set.
 
 
 
-```{r, cache=FALSE, out.width="1000", fig.align="center",echo=FALSE}
-
-knitr::include_graphics('images/05-bg_test.png')
-
-```
-
-All key information about the final model we will put in this section.
 
 ## Explanations
 
@@ -71,40 +62,7 @@ All key information about the final model we will put in this section.
 ## Summary and conclusions 
 
 
-### Gradient Boosting
-Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model.  The table below presents the values of the determination coefficient depending on (?):
-
-
-
-| without expenses | Model | $R^2$ | $R^2$ on a logarithmic scale | 
-|----------------|-----------------------------------------------------------------------|------------------------------------------|--------------------------------------------------------|
-| included | Gradient Boosting | 0.50 | - |
-| included | Tuned Gradient Boosting | A | - |
-|not included | Gradient Boosting | 0.48 | 0.59 |
-|not included| Tuned Gradient Boosting | B | C |
-
-
-
-
-We are testing models and trying to improve their quality.
-Right now, the best model we developed is Gradient Boosting Regressor.
-The figures below present the prediction values on training and test set.
-
-```{r, cache=FALSE, out.width="500", fig.align="center",echo=FALSE}
-knitr::include_graphics('images/05-bg_train.png')
-
-```
-
-```{r, cache=FALSE, out.width="500", fig.align="center",echo=FALSE}
-
-knitr::include_graphics('images/05-bg_test.png')
-
-```
-
 All key information about the final model we will put in this section.
 
-## Explanations
 
-
-## Summary and conclusions 
-
+Scripts and list of selected variables are available at: [meps_story github](https://github.com/lorenckat/meps_story).
