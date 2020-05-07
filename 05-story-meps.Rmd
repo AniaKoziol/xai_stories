@@ -1,0 +1,87 @@
+# Story Meps: regression
+
+*Authors:  Anna Kozioł (Warsaw University of Technology), Katarzyna Lorenc (Warsaw University of Technology), Piotr Podolski (University of Warsaw)*
+
+*Mentors:  Maciej Andrzejak (Affiliation 2), Alicja Jośko (Affiliation 1)*
+
+## Introduction 
+
+Perhaps the most urgent  problem with current health care system in the United States is its high cost.
+According to the  [Centers for Disease Control and Prevention](https://www.cdc.gov/nchs/fastats/health-expenditures.html), during 2017 health care spending per capita averaged nearly $11,000 and total spending was $3.2 trillion, or 17.9% of GDP.
+This raises the natural question of the causality of high expenses and the estimation of them for a particular person.
+
+One of the objectives in this chapter is to forecast annual spending on the health care of individuals in the United States.
+
+There is no doubt that these forecasts are of interest to people directly related to medical expenditure, for example insurance companies, employers, government. 
+
+How to deal with a situation when the model works well but is a so-called black box and we do not know what affects a specific result? 
+What if the proposed models return non-intuitive results and we want to know why they are wrong?
+
+The next and main purpose of this chapter is to address these concerns using [Explanatory Model Analysis](https://pbiecek.github.io/ema/).  
+We will try to identify not only which features are most predictable for the results, but also the nature of the relationship (e.g. its direction and shape).
+We will focus on understanding the behaviour of the model as a whole, as well as in specific instant level (for specific people).  
+
+
+The data set comes from a study called Medical Expenditure Panel Survey (MEPS), which is sponsored by the Healthcare Quality and Research Agency.
+About 15,000 households are selected as a new panel of surveyed units, regularly since 1996.
+
+Data set used for analysis is available for free on the [MEPS](https://meps.ahrq.gov/mepsweb/data_stats/downlAIoad_data_files.jsp) website.
+The MEPS contains representative sample of population from the Unites States with  two major components: the Household Component and the Insurance Component. 
+
+Household Component collects data  about demographic characteristics, health conditions, health status, medical history,  fees and sources of payment, access to care, satisfaction with care, health insurance coverage, income and employment for each  person surveyed. 
+ 
+The second, Insurance Component collects data about the health insurance.from private and public sector employers.
+The data include the number and types of private insurance schemes offered, premiums, employers' and employees' health insurance contributions, benefits associated with these schemes and employer characteristics.
+
+The data processing and analysis was carried out in Python 3.7.3 and R 3.6.1. 
+
+
+
+## Model
+
+### Data
+
+Agency of Healthcare Research and Quality provides an extensive database of medical expenses. Consequently, dataset selection on which we will make further analysis was an important first step. We decided to choose the two latest panels. Expenditures for treatment that we will examine in the following chapter apply to the years 2015/2016 and 2016/2017. The selected dataset contains information on over 32,000 patients, and each of them is described by 3,700 variables. We attached great importance to choosing features that would be appropriate for the prediction. The most important criterion adopted is that the variable cannot relate to expenditure associated with any treatment. For this purpose, we looked through several hundred of them and selected 387 most suitable.
+
+As a part of the preprocessing, we removed records that were marked as *Inapplicable* in the expenditure column.  The number of people who didn't incur expenses is 5504, while the number of patients with "inapplicable" is 407, the percentage respectively are 17% and 1%. The following figures show the distribution of the explained variable.
+
+
+```{r, cache=FALSE, out.width = "1400",fig.cap = "Distribution of medical expenses ", fig.align="center",echo=FALSE}
+knitr::include_graphics('images/05-y_val.png')
+```
+    
+
+
+
+### Model
+
+Among the models we have trained, the best results were achieved by Gradient Boosting. Due to the characteristics of the explained variable, we decided to check the behavior of the model after applying the logarithmic transformation to expenses. We also checked whether the not inclusion of people without medical expenses would affect the model. To choose the best model, we compared the determination coefficient values. 
+
+The table below shows the results of the experiments. To calculate the determination coefficient in column  *$R^2$ (logarithmically transformed expenses)*, we transformed logarithmically the values of expenses, and after training the model we returned to the original scale.
+
+
+
+| Patients without expenses | Model | $R^2$ | $R^2$ (logarithmically transformed expenses) | 
+|----------------|-----------------------------------------------------------------------|------------------------------------------|--------------------------------------------------------|
+| included | Gradient Boosting | 0.50 | - |
+| included | Tuned Gradient Boosting | 0.55 | - |
+|not included | Gradient Boosting | 0.42 | 0.40 |
+|not included| Tuned Gradient Boosting | 0.49 | 0.49 |
+Table: Values of the determination coefficient.
+
+
+
+
+
+## Explanations
+
+
+## Summary and conclusions 
+
+
+All key information about the final model we will put in this section.
+
+
+Scripts and list of selected variables are available at: [meps_story github](https://github.com/lorenckat/meps_story).
+
+
